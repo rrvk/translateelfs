@@ -1,5 +1,11 @@
 package gui;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,6 +16,8 @@ public class Gui extends JFrame {
 
 	private JTextField txtText;
 	private JButton btnTranslate;
+	
+	public Font customFont = null;
 	
 	/**
 	 * @return the txtText
@@ -40,17 +48,33 @@ public class Gui extends JFrame {
 	}
 
 	public Gui(){
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE );
-		this.setTitle("Translate text into elfs");
-		this.setLayout(null);
+		// make the elfs font
+		try {
+            //create the font to use. Specify the size!
+            customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Font/TengwarSindarin.ttf")).deriveFont(20f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            //register the font
+            ge.registerFont(customFont);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch(FontFormatException e)
+        {
+            e.printStackTrace();
+        }
+		// set the settings
+		
+
 		// add the labels
-		JLabel lblE = new JLabel("Elfs:");
+		JLabel lblE = new JLabel("Elvish:");
 		lblE.setBounds(10, 10, 50, 20);
 		this.add(lblE);
+		
 		// add the textfield
 		txtText = new JTextField();
 		txtText.setBounds(60, 10, 300, 20);
 		this.add(txtText);
+		
 		// add the button
 		btnTranslate = new JButton("Translate");
 		btnTranslate.setBounds(10, 50, 100, 20);

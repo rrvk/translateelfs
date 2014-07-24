@@ -4,30 +4,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import gui.Gui;
-import controler.Controler;
+import gui.PopupGui;
 
 public class Handeler {
 	
 	private Gui gui;
-	private Controler con;
 	
-	public Handeler(Gui gui, Controler con) {
+	public Handeler(Gui gui) {
 		this.gui=gui;
-		this.con=con;
 		addHandelers();
 	}
 
 	private void addHandelers() {
 		gui.getBtnTranslate().addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				con.translateTextToElfs(gui.getTxtText().getText());
-				
+				new PopupGui(gui.customFont,gui.getTxtText().getText().toLowerCase());
 			}
-		});
-		// TODO Auto-generated method stub
-		
+		});		
 	}
 
 }
