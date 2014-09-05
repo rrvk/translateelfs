@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class Gui extends JFrame {
@@ -56,6 +57,10 @@ public class Gui extends JFrame {
             //register the font
             ge.registerFont(customFont);
         } catch (IOException e) {
+        	if (e.getMessage().equals("Can't read Font\\TengwarSindarin.ttf")){
+        		JOptionPane.showMessageDialog(null, "The font is not found");
+        		System.exit(0);
+        	}
             e.printStackTrace();
         }
         catch(FontFormatException e)
